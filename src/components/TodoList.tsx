@@ -1,15 +1,15 @@
-import React from 'react'
+import { MyContext, ContextType } from "../context/context";
+import { useContext } from "react";
 
-type Props = {todos: string[]}
+export default function TodoList() {
+  const {todos} = useContext<ContextType>(MyContext);
 
-export default function TodoList({todos}: Props) {
   return (
-
     <ul>
-    {todos.map((todo) => (
+      {todos.map((todo) => (
         <li>{todo}</li>
-    ))}
+      ))}
 
-</ul>
+    </ul>
   )
 }

@@ -1,19 +1,14 @@
-import { ChangeEvent } from "react";
-
-type Props = {
-    todo: string;
-    setTodo: Function;
-    addTodo: ()=> void;
-  }
+import { ChangeEvent,MouseEvent,useContext } from "react";
+import { MyContext, ContextType } from "../context/context";
 
 
+export default function TodoInput() {
 
-export default function TodoInput({todo,setTodo,addTodo}: Props) {
-
+  const {todo,setTodo, addTodo} = useContext<ContextType>(MyContext);
   return (
     <>   
     <input onChange={(e:ChangeEvent<HTMLInputElement>)=> setTodo(e.target.value)}  value={todo}></input>
-    <button onClick={addTodo}> Add Task </button>
+    <button onClick={(event: MouseEvent<HTMLButtonElement>): void => addTodo()}> Add Task </button>
     </>
  
   )

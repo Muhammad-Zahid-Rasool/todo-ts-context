@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import './App.css';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
+import { MyContext } from "./context/context";
 
 function App() {
- const [todo,setTodo] = useState<string>("");
+ const [todo,setTodo] = useState<string>("zahid");
  //const [todos,setTodos] = useState<string[]>([""]); // Now it is OK. setTodos(["zahid"]);
  const [todos,setTodos] = useState<string[]>([]);
  const addTodo = ()=>{
@@ -14,8 +15,10 @@ function App() {
 
   return (
     <div>
-      <TodoInput todo={todo}  setTodo= {setTodo} addTodo = {addTodo}/>
-      <TodoList todos={todos}/>
+      <MyContext.Provider value={{ todo, todos , setTodo , addTodo }}>
+        <TodoInput/>
+        <TodoList/>
+      </MyContext.Provider>
     </div>
   );
 }
